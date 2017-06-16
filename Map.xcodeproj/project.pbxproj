@@ -7,14 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D63CCD31EF363EC00F9251B /* DOHamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D63CCD21EF363EC00F9251B /* DOHamburgerButton.swift */; };
 		9D8A9BD61EEE369400BE119B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8A9BD51EEE369400BE119B /* AppDelegate.swift */; };
 		9D8A9BD81EEE369400BE119B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8A9BD71EEE369400BE119B /* ViewController.swift */; };
 		9D8A9BDB1EEE369400BE119B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D8A9BD91EEE369400BE119B /* Main.storyboard */; };
 		9D8A9BDD1EEE369400BE119B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D8A9BDC1EEE369400BE119B /* Assets.xcassets */; };
 		9D8A9BE01EEE369400BE119B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D8A9BDE1EEE369400BE119B /* LaunchScreen.storyboard */; };
+		9D8A9BE91EEE36B300BE119B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D8A9BE81EEE36B300BE119B /* MapKit.framework */; };
+		9DC073C81EF22E1400A59807 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC073C71EF22E1400A59807 /* LocationModel.swift */; };
+		9DC073CA1EF22E5D00A59807 /* LocationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC073C91EF22E5D00A59807 /* LocationInfo.swift */; };
+		9DC073CC1EF2339100A59807 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC073CB1EF2339100A59807 /* TableViewCell.swift */; };
+		9DC073D31EF2767A00A59807 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC073D21EF2767A00A59807 /* LeftViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D63CCD21EF363EC00F9251B /* DOHamburgerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DOHamburgerButton.swift; sourceTree = "<group>"; };
 		9D8A9BD21EEE369400BE119B /* Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Map.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D8A9BD51EEE369400BE119B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D8A9BD71EEE369400BE119B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +29,11 @@
 		9D8A9BDC1EEE369400BE119B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D8A9BDF1EEE369400BE119B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D8A9BE11EEE369400BE119B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D8A9BE81EEE36B300BE119B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9DC073C71EF22E1400A59807 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		9DC073C91EF22E5D00A59807 /* LocationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationInfo.swift; sourceTree = "<group>"; };
+		9DC073CB1EF2339100A59807 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		9DC073D21EF2767A00A59807 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D8A9BE91EEE36B300BE119B /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +53,7 @@
 			children = (
 				9D8A9BD41EEE369400BE119B /* Map */,
 				9D8A9BD31EEE369400BE119B /* Products */,
+				9D8A9BE71EEE36B300BE119B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,12 +70,25 @@
 			children = (
 				9D8A9BD51EEE369400BE119B /* AppDelegate.swift */,
 				9D8A9BD71EEE369400BE119B /* ViewController.swift */,
+				9DC073D21EF2767A00A59807 /* LeftViewController.swift */,
+				9DC073C71EF22E1400A59807 /* LocationModel.swift */,
+				9DC073C91EF22E5D00A59807 /* LocationInfo.swift */,
+				9DC073CB1EF2339100A59807 /* TableViewCell.swift */,
+				9D63CCD21EF363EC00F9251B /* DOHamburgerButton.swift */,
 				9D8A9BD91EEE369400BE119B /* Main.storyboard */,
 				9D8A9BDC1EEE369400BE119B /* Assets.xcassets */,
 				9D8A9BDE1EEE369400BE119B /* LaunchScreen.storyboard */,
 				9D8A9BE11EEE369400BE119B /* Info.plist */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		9D8A9BE71EEE36B300BE119B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9D8A9BE81EEE36B300BE119B /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -97,6 +124,14 @@
 					9D8A9BD11EEE369400BE119B = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -136,7 +171,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DC073C81EF22E1400A59807 /* LocationModel.swift in Sources */,
 				9D8A9BD81EEE369400BE119B /* ViewController.swift in Sources */,
+				9DC073CC1EF2339100A59807 /* TableViewCell.swift in Sources */,
+				9DC073CA1EF22E5D00A59807 /* LocationInfo.swift in Sources */,
+				9DC073D31EF2767A00A59807 /* LeftViewController.swift in Sources */,
+				9D63CCD31EF363EC00F9251B /* DOHamburgerButton.swift in Sources */,
 				9D8A9BD61EEE369400BE119B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,6 +337,7 @@
 				9D8A9BE61EEE369400BE119B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
