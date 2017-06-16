@@ -10,15 +10,18 @@ import UIKit
 import MapKit
 import CoreLocation
 var locationNow : CLLocation? = CLLocation(latitude: 32.189299, longitude: 119.425738)
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate  {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
     @IBOutlet weak var choose: UISegmentedControl!
     @IBOutlet weak var leftview: UIView!
     @IBOutlet weak var Shelterview: UIView!
     @IBOutlet weak var mainMapView: MKMapView!
+    @IBOutlet weak var topsearch: UIView!
+    var Searchbar: UISearchBar!
     var objectAnnotation: MKPointAnnotation! = nil
     let Locationmodel = LocationModel()
     var timer: Timer!
     var button: DOHamburgerButton! = nil
+    var startPanLocation: CGPoint!
     //定位管理器
     let locationManager: CLLocationManager = CLLocationManager()
     var LocationList: NSArray! = nil
@@ -33,32 +36,125 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         Locationmodel.loadData()
         NotificationCenter.default.addObserver(self, selector: #selector(Selectlocation(_:)), name: NSNotification.Name(rawValue: "Selectlocation"), object: nil)
         UIView.setAnimationDelegate(self)
+        
+//        button = DOHamburgerButton(frame: CGRect(x: 0, y: 0, width: topsearch.frame.height, height: topsearch.frame.height))
+//        button.addTarget(self, action: #selector(tapped), for: .touchUpInside)
+//        topsearch.addSubview(button)
+        
         button = DOHamburgerButton(frame: CGRect(x: 16, y: 20, width: 30, height: 30))
         button.addTarget(self, action: #selector(tapped), for: .touchUpInside)
         self.view.addSubview(button)
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(respondsToPenGesture))
+        Shelterview.addGestureRecognizer(pan)
+        //置顶
+//        self.view.bringSubview(toFront: leftview)
+        Searchbar = UISearchBar(frame: CGRect(x: topsearch.frame.height, y: 0, width: topsearch.frame.width-topsearch.frame.height, height: topsearch.frame.height))
+        Searchbar.delegate = self
+        Searchbar.searchBarStyle = .minimal
+        Searchbar.returnKeyType = .search
+        Searchbar.placeholder = "江苏省内"
+//        topsearch.addSubview(Searchbar)
+        mainMapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cancel)))
+//        mainMapView.showsCompass = false
+    }
+    
+    func cancel() {
+        Searchbar.text = ""
+        Searchbar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let path = Bundle.main.bundlePath
+        let plistName:NSString = "City.plist"
+        let finalPath:NSString = (path as NSString).appendingPathComponent(plistName as String) as NSString
+        let diaryList: Array = NSArray(contentsOfFile:finalPath as String)! as Array
+        var c = diaryList[0]
+        for a in diaryList {
+            if String(describing: a[0]).contains(searchBar.text!) {
+                print(a[0] as! String)
+                print(Double(a[1] as! String)!)
+                print(Double(a[2] as! String)!)
+                c = a
+                print(c)
+                break
+            }
+        }
+        let b = CLLocation(latitude: Double(c[1] as! String)!, longitude: Double(c[2] as! String)!)
+        addpin(last: b, title: c[0] as! String)
+//        find(last: b)
+        Searchbar.resignFirstResponder()
+    }
+    
+    func respondsToPenGesture(sender: UIPanGestureRecognizer) {
+        if (sender.state == UIGestureRecognizerState.began) {
+            startPanLocation = sender.location(in: Shelterview)
+        } else if (sender.state == UIGestureRecognizerState.changed) {
+            let stopLocation = sender.location(in: Shelterview)
+            let abscissaChange = stopLocation.x - startPanLocation.x
+            if leftview.frame.origin.x <= 0 && leftview.frame.origin.x >= -self.view.frame.width*4/5{
+                if leftview.frame.origin.x+abscissaChange > 0 {
+                    Shelterview.alpha = 0.6
+                    self.choose.alpha = 0
+                    self.button.frame.origin = CGPoint(x: self.view.frame.width*4/5+8, y: 20)
+                    leftview.frame.origin.x = 0
+                } else if leftview.frame.origin.x+abscissaChange < -self.view.frame.width*4/5{
+                    Shelterview.alpha = 0
+                    self.choose.alpha = 1
+                    self.button.frame.origin = CGPoint(x: 16, y: 20)
+                    leftview.frame.origin.x = -self.view.frame.width*4/5
+                } else {
+                    let a = (self.view.frame.width*4/5+leftview.frame.origin.x)/self.view.frame.width
+                    Shelterview.alpha = a*0.75
+                    self.choose.alpha = -leftview.frame.origin.x/self.view.frame.width*1.25
+                    leftview.frame.origin.x = leftview.frame.origin.x+abscissaChange
+                    self.button.frame.origin = CGPoint(x: (self.view.frame.width*4/5-8)*(a*1.25)+16, y: 20)
+                }
+            }
+        } else if (sender.state == UIGestureRecognizerState.ended) {
+            if -leftview.frame.origin.x*2 >= self.view.frame.width*4/5 {
+                UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
+                    self.leftview.frame.origin = CGPoint(x: -self.view.frame.width*4/5, y: 0)
+                    self.Shelterview.alpha = 0
+                    self.choose.alpha = 1
+                    self.button.frame.origin = CGPoint(x: 16, y: 20)
+                }, completion: { (Bool) in
+                    self.leftview.isHidden = true
+                })
+                self.button.deselect()
+                NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "regain"), object: nil))
+            } else {
+                UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
+                    self.leftview.frame.origin = CGPoint(x: 0, y: 0)
+                    self.Shelterview.alpha = 0.6
+                    self.choose.alpha = 0
+                    self.button.frame.origin = CGPoint(x: self.view.frame.width*4/5+8, y: 20)
+                }, completion: nil)
+            }
+        }
     }
     
     @IBAction func tapped(sender: DOHamburgerButton) {
         if sender.isSelected {
             sender.deselect()
             UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
-                self.leftview.frame = CGRect(x: -self.view.frame.width*4/5, y: 0, width: self.leftview.frame.width, height: self.leftview.frame.height)
+                self.leftview.frame.origin = CGPoint(x: -self.view.frame.width*4/5, y: 0)
                 self.Shelterview.alpha = 0
-                self.button.frame = CGRect(x: 16, y: 20, width: self.button.frame.width, height: self.button.frame.height)
                 self.choose.alpha = 1
+                self.button.frame.origin = CGPoint(x: 16, y: 20)
             }, completion: { (Bool) in
                 self.leftview.isHidden = true
             })
-            NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "regain"), object: nil))
         } else {
+            sender.select()
+            Searchbar.resignFirstResponder()
+            Searchbar.text = ""
             self.leftview.isHidden = false
             UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
-                self.leftview.frame = CGRect(x: 0, y: 0, width: self.leftview.frame.width, height: self.leftview.frame.height)
+                self.leftview.frame.origin = CGPoint(x: 0, y: 0)
                 self.Shelterview.alpha = 0.6
-                self.button.frame = CGRect(x: self.view.frame.width*4/5+8, y: 20, width: self.button.frame.width, height: self.button.frame.height)
                 self.choose.alpha = 0
+                self.button.frame.origin = CGPoint(x: self.view.frame.width*4/5+8, y: 20)
             }, completion: nil)
-            sender.select()
         }
     }
     
@@ -75,6 +171,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             addpin(last: CLLocation(latitude: Double(location.latitude)!, longitude: Double(location.longitude)!) , title: location.title)
         }
         tapped(sender: button)
+        
+//        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
+//            self.leftview.frame.origin = CGPoint(x: -self.view.frame.width*4/5, y: 0)
+//            self.Shelterview.alpha = 0
+//            self.choose.alpha = 1
+//        }, completion: { (Bool) in
+//            self.leftview.isHidden = true
+//        })
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -153,18 +257,17 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if choose.selectedSegmentIndex == 0 {
             mainMapView.mapType = .standard
             UIView.animate(withDuration: 0.6, delay: 1, options: .curveEaseInOut, animations: {
-                self.button.color = UIColor.black
             }, completion: nil)
         }
         else {
             mainMapView.mapType = .hybrid
             UIView.animate(withDuration: 0.6, delay: 1, options: .curveEaseInOut, animations: {
-                self.button.color = UIColor.white
             }, completion: nil)
         }
     }
     
     func find(last: CLLocation) {
+        print(last.coordinate)
         //创建一个MKCoordinateSpan对象，设置地图的范围（越小越精确）
         let latDelta = 0.05
         let longDelta = 0.05
@@ -181,17 +284,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func addpin(last: CLLocation, title: String) {
-            //创建一个大头针对象
-            objectAnnotation = MKPointAnnotation()
-            //设置大头针的显示位置
-            objectAnnotation.coordinate = last.coordinate
-            //设置点击大头针之后显示的标题
-            objectAnnotation.title = title
-            //设置点击大头针之后显示的描述
-            objectAnnotation.subtitle = "\(last.coordinate.latitude),\(last.coordinate.longitude)"
-            //添加大头针
+        if self.mainMapView.annotations.count != 0 {
             self.mainMapView.removeAnnotation(objectAnnotation)
-            self.mainMapView.addAnnotation(objectAnnotation)
+        }
+        //创建一个大头针对象
+        objectAnnotation = MKPointAnnotation()
+        //设置大头针的显示位置
+        objectAnnotation.coordinate = last.coordinate
+        //设置点击大头针之后显示的标题
+        objectAnnotation.title = title
+        //设置点击大头针之后显示的描述
+        objectAnnotation.subtitle = "\(last.coordinate.latitude),\(last.coordinate.longitude)"
+        //添加大头针
+        self.mainMapView.addAnnotation(objectAnnotation)
     }
     
     

@@ -26,6 +26,12 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Lgb-q3-8tZ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </mapView>
+                            <view hidden="YES" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4e1-MR-c0O">
+                                <rect key="frame" x="16" y="20" width="288" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="gOe-vB-pAQ"/>
+                                </constraints>
+                            </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="O2M-0f-bRe">
                                 <rect key="frame" x="227" y="534" width="83" height="23"/>
                                 <constraints>
@@ -44,25 +50,25 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bb8-WX-RTN">
                                 <rect key="frame" x="-256" y="0.0" width="576" height="568"/>
                                 <subviews>
+                                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZI-1p-yLz">
+                                        <rect key="frame" x="0.0" y="0.0" width="576" height="568"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </view>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VuV-xM-Z6f">
                                         <rect key="frame" x="0.0" y="0.0" width="256" height="568"/>
                                         <connections>
                                             <segue destination="0UY-fe-Hlf" kind="embed" id="Zhm-fl-20W"/>
                                         </connections>
                                     </containerView>
-                                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZI-1p-yLz">
-                                        <rect key="frame" x="256" y="0.0" width="320" height="568"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="VuV-xM-Z6f" firstAttribute="leading" secondItem="bb8-WX-RTN" secondAttribute="leading" id="047-sQ-uR0"/>
+                                    <constraint firstItem="LZI-1p-yLz" firstAttribute="leading" secondItem="bb8-WX-RTN" secondAttribute="leading" id="0WJ-HG-fb7"/>
                                     <constraint firstAttribute="bottom" secondItem="VuV-xM-Z6f" secondAttribute="bottom" id="5Zz-OO-IAv"/>
                                     <constraint firstAttribute="trailing" secondItem="LZI-1p-yLz" secondAttribute="trailing" id="M4K-ve-cGG"/>
                                     <constraint firstAttribute="bottom" secondItem="LZI-1p-yLz" secondAttribute="bottom" id="gow-wc-e1D"/>
                                     <constraint firstItem="VuV-xM-Z6f" firstAttribute="top" secondItem="bb8-WX-RTN" secondAttribute="top" id="kS0-qx-biQ"/>
                                     <constraint firstItem="LZI-1p-yLz" firstAttribute="top" secondItem="bb8-WX-RTN" secondAttribute="top" id="rAh-Rt-FeM"/>
-                                    <constraint firstItem="LZI-1p-yLz" firstAttribute="leading" secondItem="VuV-xM-Z6f" secondAttribute="trailing" id="zDR-ff-wmn"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -74,11 +80,14 @@
                             <constraint firstItem="bb8-WX-RTN" firstAttribute="width" secondItem="pSY-54-hfe" secondAttribute="width" multiplier="9/5" id="8h2-7U-MIE"/>
                             <constraint firstAttribute="trailing" secondItem="bb8-WX-RTN" secondAttribute="trailing" id="HHd-ax-1zE"/>
                             <constraint firstAttribute="trailing" secondItem="Lgb-q3-8tZ" secondAttribute="trailing" id="MN3-yA-Thb"/>
+                            <constraint firstItem="4e1-MR-c0O" firstAttribute="leading" secondItem="pSY-54-hfe" secondAttribute="leading" constant="16" id="ZNi-7F-7gG"/>
+                            <constraint firstAttribute="trailing" secondItem="4e1-MR-c0O" secondAttribute="trailing" constant="16" id="b4B-DJ-3OL"/>
                             <constraint firstItem="aUs-R6-WUy" firstAttribute="top" secondItem="Lgb-q3-8tZ" secondAttribute="bottom" id="bQ7-TY-xtu"/>
                             <constraint firstItem="Lgb-q3-8tZ" firstAttribute="leading" secondItem="pSY-54-hfe" secondAttribute="leading" id="eWB-eK-HfD"/>
                             <constraint firstItem="Lgb-q3-8tZ" firstAttribute="top" secondItem="pSY-54-hfe" secondAttribute="top" id="nDU-gJ-lRp"/>
                             <constraint firstItem="aUs-R6-WUy" firstAttribute="top" secondItem="O2M-0f-bRe" secondAttribute="bottom" constant="12" id="rcq-aX-7sJ"/>
                             <constraint firstItem="bb8-WX-RTN" firstAttribute="top" secondItem="pSY-54-hfe" secondAttribute="top" id="wjf-R3-2Wg"/>
+                            <constraint firstItem="4e1-MR-c0O" firstAttribute="top" secondItem="9rC-xo-Eot" secondAttribute="bottom" constant="20" id="xK2-yC-Hai"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -87,6 +96,7 @@
                         <outlet property="choose" destination="O2M-0f-bRe" id="Tmm-gL-0eE"/>
                         <outlet property="leftview" destination="bb8-WX-RTN" id="v7n-cr-zrB"/>
                         <outlet property="mainMapView" destination="Lgb-q3-8tZ" id="0N4-wL-gZ8"/>
+                        <outlet property="topsearch" destination="4e1-MR-c0O" id="aC6-RJ-Oxh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aic-7W-3g7" userLabel="First Responder" sceneMemberID="firstResponder"/>

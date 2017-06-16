@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<string>江苏省 南京市</string>
+		<string>118.796877</string>
+		<string>32.060255</string>
+	</array>
+	<array>
+		<string>江苏省 无锡市</string>
+		<string>120.311910</string>
+		<string>31.491169</string>
+	</array>
+	<array>
+		<string>江苏省 徐州市</string>
+		<string>117.284124</string>
+		<string>34.205768</string>
+	</array>
+	<array>
+		<string>江苏省 常州市</string>
+		<string>119.974061</string>
+		<string>31.811226</string>
+	</array>
+	<array>
+		<string>江苏省 苏州市</string>
+		<string>120.585288</string>
+		<string>31.298974</string>
+	</array>
+	<array>
+		<string>江苏省 南通市</string>
+		<string>120.894291</string>
+		<string>31.980171</string>
+	</array>
+	<array>
+		<string>江苏省 连云港市
+
+江苏省 连云港市</string>
+		<string>119.221610</string>
+		<string>34.596653</string>
+	</array>
+	<array>
+		<string>江苏省 淮安市</string>
+		<string>119.113184</string>
+		<string>33.551052</string>
+	</array>
+	<array>
+		<string>江苏省 盐城市</string>
+		<string>120.163659</string>
+		<string>33.347316</string>
+	</array>
+	<array>
+		<string>江苏省 扬州市</string>
+		<string>119.412939</string>
+		<string>32.394209</string>
+	</array>
+	<array>
+		<string>江苏省 镇江市</string>
+		<string>119.425836</string>
+		<string>32.187849</string>
+	</array>
+	<array>
+		<string>江苏省 泰州市</string>
+		<string>119.922933</string>
+		<string>32.455536</string>
+	</array>
+	<array>
+		<string>江苏省 宿迁市</string>
+		<string>118.275198</string>
+		<string>33.963232</string>
+	</array>
+</array>
+</plist>

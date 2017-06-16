@@ -18,6 +18,7 @@
 		9DC073CA1EF22E5D00A59807 /* LocationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC073C91EF22E5D00A59807 /* LocationInfo.swift */; };
 		9DC073CC1EF2339100A59807 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC073CB1EF2339100A59807 /* TableViewCell.swift */; };
 		9DC073D31EF2767A00A59807 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC073D21EF2767A00A59807 /* LeftViewController.swift */; };
+		9DD629831EF3AC4A00A96C16 /* City.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9DD629821EF3AC4A00A96C16 /* City.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		9DC073C91EF22E5D00A59807 /* LocationInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationInfo.swift; sourceTree = "<group>"; };
 		9DC073CB1EF2339100A59807 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		9DC073D21EF2767A00A59807 /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
+		9DD629821EF3AC4A00A96C16 /* City.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = City.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				9D8A9BDC1EEE369400BE119B /* Assets.xcassets */,
 				9D8A9BDE1EEE369400BE119B /* LaunchScreen.storyboard */,
 				9D8A9BE11EEE369400BE119B /* Info.plist */,
+				9DD629821EF3AC4A00A96C16 /* City.plist */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D8A9BE01EEE369400BE119B /* LaunchScreen.storyboard in Resources */,
+				9DD629831EF3AC4A00A96C16 /* City.plist in Resources */,
 				9D8A9BDD1EEE369400BE119B /* Assets.xcassets in Resources */,
 				9D8A9BDB1EEE369400BE119B /* Main.storyboard in Resources */,
 			);
