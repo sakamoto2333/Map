@@ -262,11 +262,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if choose.selectedSegmentIndex == 0 {
             mainMapView.mapType = .standard
             UIView.animate(withDuration: 0.6, delay: 1, options: .curveEaseInOut, animations: {
+                self.button.color = UIColor.black
             }, completion: nil)
         }
         else {
             mainMapView.mapType = .hybrid
             UIView.animate(withDuration: 0.6, delay: 1, options: .curveEaseInOut, animations: {
+                self.button.color = UIColor.white
             }, completion: nil)
         }
     }
