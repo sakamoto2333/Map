@@ -109,6 +109,7 @@ class LeftViewController: UIViewController, UITableViewDelegate, UITableViewData
             Locationmodel.LocationList.remove(at: indexPath.row)
             Locationmodel.saveData()
             tableView.deleteRows(at: [indexPath], with: .top)
+            NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "deleterow"), object: nil))
             //            self.tableView.setEditing(true, animated: true)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

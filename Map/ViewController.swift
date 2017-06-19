@@ -35,6 +35,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mainMapView.addGestureRecognizer(longPress)
         Locationmodel.loadData()
         NotificationCenter.default.addObserver(self, selector: #selector(Selectlocation(_:)), name: NSNotification.Name(rawValue: "Selectlocation"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(deleterow), name: NSNotification.Name(rawValue: "deleterow"), object: nil)
         UIView.setAnimationDelegate(self)
         
 //        button = DOHamburgerButton(frame: CGRect(x: 0, y: 0, width: topsearch.frame.height, height: topsearch.frame.height))
@@ -56,6 +57,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //        topsearch.addSubview(Searchbar)
         mainMapView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cancel)))
 //        mainMapView.showsCompass = false
+    }
+    
+    func deleterow() {
+        Locationmodel.loadData()
     }
     
     func cancel() {
