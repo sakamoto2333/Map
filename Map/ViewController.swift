@@ -335,7 +335,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func mapLongPress(_ recognizer: UIGestureRecognizer) {
         if (recognizer.state == .began){
             print("A long press has been detected.")
-            self.mainMapView.removeAnnotation(objectAnnotation)
+            if self.mainMapView.annotations.count != 0 {
+                self.mainMapView.removeAnnotation(objectAnnotation)
+            }
             let touchedAt = recognizer.location(in: self.mainMapView) // adds the location on the view it was pressed
             let touchedAtCoordinate : CLLocationCoordinate2D = mainMapView.convert(touchedAt, toCoordinateFrom: self.mainMapView) // will get coordinates
             objectAnnotation.coordinate = touchedAtCoordinate
